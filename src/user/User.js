@@ -49,7 +49,7 @@ export const User = () => {
         <h2 className="mb-3">{user.name}</h2>
         <ul className="nav nav-tabs">
           <li className="nav-item">
-            <Link to={`${path}`} className="nav-link">Profile</Link>
+            <Link to={`${path}/${userId}`} className="nav-link">Profile</Link>
           </li>
           <li className="nav-item">
             <Link to={`${path}/posts`} className="nav-link">Posts</Link>
@@ -58,8 +58,14 @@ export const User = () => {
 
         {user.id ? (
           <div className="p-4 border border-top-0">
-            <PostList posts={user.posts} />
-            <UserProfile user={user} />
+            <Switch>
+              <Route path={`${path}`}>
+                <PostList posts={user.posts} />
+              </Route>
+              <Route path={`${path}/posts`}>
+                <UserProfile user={user} />
+              </Route>
+            </Switch>
           </div>
         ) : (
           <div className="p-4 border border-top-0">

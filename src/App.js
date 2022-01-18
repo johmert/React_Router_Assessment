@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { BrowserRouter as Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Header from "./common/Header";
 import CardList from "./home/CardList";
 import User from "./user/User";
@@ -10,11 +10,11 @@ function App() {
     <Fragment>
       <Header />
       <Switch>
-        <Route exact path="/">
-          <CardList />
-        </Route>
         <Route path="/users/:userId">
           <User />
+        </Route>
+        <Route exact path="/">
+          <CardList />
         </Route>
         <Route>
           <NotFound />

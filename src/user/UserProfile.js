@@ -1,6 +1,7 @@
 import React from "react";
 
 export const UserProfile = ({ user }) => {
+  console.log("User Profile loading! ", user.id);
   return (
     <div
       className="tab-pane active pt-2"

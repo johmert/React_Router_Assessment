@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Route, Link, Switch, useParams, useRouteMatch } from "react-router-dom";
+import { Route, Link, Switch, useParams, useRouteMatch } from "react-router-dom";
 import UserProfile from "./UserProfile";
 import { fetchUserWithPosts } from "../api";
 import PostList from "./PostList";
@@ -9,8 +9,9 @@ import ErrorMessage from "../common/ErrorMessage";
 export const User = () => {
   const [user, setUser] = useState({ posts: [] });
   const [error, setError] = useState(undefined);
-  const userId = useParams().userId;
+  const userId = useParams();
   const {path} = useRouteMatch();
+  console.log("Path: ", path);
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -25,7 +26,7 @@ export const User = () => {
     return (
       <ErrorMessage error={error}>
         <p>
-          <Link to="/"> Go Home </Link>
+          <Link to="/"> Return Home </Link>
         </p>
       </ErrorMessage>
     );
@@ -49,7 +50,7 @@ export const User = () => {
         <h2 className="mb-3">{user.name}</h2>
         <ul className="nav nav-tabs">
           <li className="nav-item">
-            <Link to={`${path}/${userId}`} className="nav-link">Profile</Link>
+            <Link to={`${path}`} className="nav-link">Profile</Link>
           </li>
           <li className="nav-item">
             <Link to={`${path}/posts`} className="nav-link">Posts</Link>
@@ -59,10 +60,10 @@ export const User = () => {
         {user.id ? (
           <div className="p-4 border border-top-0">
             <Switch>
-              <Route path={`${path}`}>
+              <Route path={`${path}/posts`}>
                 <PostList posts={user.posts} />
               </Route>
-              <Route path={`${path}/posts`}>
+              <Route path={`${path}`}>
                 <UserProfile user={user} />
               </Route>
             </Switch>

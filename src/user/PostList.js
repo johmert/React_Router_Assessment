@@ -17,10 +17,10 @@ export const PostList = ({ posts }) => {
       </div>
       <div className="col-9">
         <Switch>
-        <Route exact path={path}>
+        <Route exact path={`${path}/posts`}>
             <NoPostSelectedMessage />
           </Route>
-          <Route path={`${path}/:postId`}>
+          <Route path={`${path}/posts/:postId`}>
             <Post posts={posts} />
           </Route>
         </Switch>

@@ -10,7 +10,7 @@ function App() {
     <Fragment>
       <Header />
       <Switch>
-        <Route path="/users/:userId">
+        <Route path={`/users/:userId`}>
           <User />
         </Route>
         <Route exact path="/">

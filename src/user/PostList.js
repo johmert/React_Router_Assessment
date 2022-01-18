@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Route, Switch, useRouteMatch } from "react-router-dom";
+import { Route, Switch, useRouteMatch } from "react-router-dom";
 import Post from "./Post";
 import PostLink from "./PostLink";
 import NoPostSelectedMessage from "./NoPostSelectedMessage";
@@ -17,11 +17,11 @@ export const PostList = ({ posts }) => {
       </div>
       <div className="col-9">
         <Switch>
-        <Route exact path={`${path}/posts`}>
-            <NoPostSelectedMessage />
-          </Route>
-          <Route path={`${path}/posts/:postId`}>
+          <Route path={`${path}/:postId`}>
             <Post posts={posts} />
+          </Route>
+          <Route path={path}>
+            <NoPostSelectedMessage />
           </Route>
         </Switch>
         

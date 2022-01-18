@@ -10,8 +10,7 @@ export const User = () => {
   const [user, setUser] = useState({ posts: [] });
   const [error, setError] = useState(undefined);
   const userId = useParams();
-  const {path} = useRouteMatch();
-  console.log("Path: ", path);
+  const { path } = useRouteMatch();
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -31,18 +30,7 @@ export const User = () => {
       </ErrorMessage>
     );
   }
-
-  /*
-    TODO: In the below section, update the links to work appropriately with React Router.
-
-    TODO: You'll need to add nested routes below.
-
-    The <PostList /> component should show on the following route:
-    /users/:userId/posts
-
-    The <UserProfile /> component should show on the following route:
-    /users/:userId
-  */
+  
   return (
     <section className="container">
       <PostsNav />
@@ -63,7 +51,7 @@ export const User = () => {
               <Route path={`${path}/posts`}>
                 <PostList posts={user.posts} />
               </Route>
-              <Route path={`${path}`}>
+              <Route path={path}>
                 <UserProfile user={user} />
               </Route>
             </Switch>
